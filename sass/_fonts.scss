@@ -1,0 +1,26 @@
+/*--------------------------------------------------------------
+# Embedded Fonts
+--------------------------------------------------------------*/
+
+
+@font-face {
+    font-family: Exo Web Light;
+    src: url(../../assets/fonts/exo-light-webfont.ttf);
+}
+@font-face {
+    font-family: Exo Web Light Italic;
+    src: url(../../assets/fonts/exo-lightitalic-webfont.ttf);
+}
+@font-face {
+    font-family: Exo Web Medium;
+    src: url(../../assets/fonts/exo-medium-webfont.ttf);
+}
+@font-face {
+    font-family: Exo Web Medium Italic;
+    src: url(../../assets/fonts/exo-mediumitalic-webfont.ttf);
+}
+
+$base-font: #fff;
+$base-bg: #222;
+$dashed: #fff;
+$green: #00cc00;
