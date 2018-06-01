@@ -27,9 +27,11 @@
             $('.entry-content').html(post.content.rendered);
             $('.entry-title').html(post.title.rendered);
 
-            //display the quote if available 
+            //display the quote if available   
             if (quoteSource.length && quoteSourceUrl.length) {
-               $sourceSpan.html(', ' + quoteSource);
+               $sourceSpan.html(', <a href="' + quoteSourceUrl + '">' + quoteSource + '</a>');
+            } else if (quoteSource.length) {
+              $sourceSpan.html(', ' + quoteSource);
             } else {
                $sourceSpan.text('');
             }
@@ -40,7 +42,54 @@
          });
       });
    });
- 
+
+
+   /**
+   * Ajax-based front-end post submissions.
+   */
+  $(function() {
+    $('#quote-submission-form').on('submit', function(event) {
+      event.preventDefault();
+
+      var title = $('#quote-author').val(),
+        content = $('#quote-content').val(),
+        quoteSource = $('#quote-source').val(),
+        quoteSourceUrl = $('#quote-source-url').val();
+
+      var data = {
+        title: title,
+        content: content,
+        _qod_quote_source: quoteSource,
+        _qod_quote_source_url: quoteSourceUrl,
+        post_status: 'pending'
+      };
+
+      $.ajax({
+        method: 'post',
+        url: api_vars.root_url + 'wp/v2/posts',
+        data: data,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-WP-Nonce', api_vars.nonce);
+        }
+      })
+        .done(function() {
+          // clear the form fields and hide the form
+          $('#quote-submission-form')
+            .slideUp()
+            .find('input[type="text"], input[type="url"], textarea')
+            .val('');
+          // show success message
+          $('.submit-success-message')
+            .text(api_vars.success)
+            .slideDown('slow');
+        })
+        .fail(function() {
+          alert(api_vars.failure);
+        });
+    });
+  });
+
 })(jQuery);
 
-        
+
+

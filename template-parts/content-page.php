@@ -22,8 +22,8 @@
 		?>
 	</div><!-- .entry-content -->
 	<?php if ( is_front_page() ) {	?>
-		<?php } ?><button type="button" id="new-quote">Show Me Another!</button>
-	<?php } endif ?>
+		<button type="button" id="new-quote">Show Me Another!</button>
+	<?php } ?>
 					
 
 </article><!-- #post-## -->

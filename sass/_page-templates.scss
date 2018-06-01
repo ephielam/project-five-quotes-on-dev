@@ -5,6 +5,7 @@ body {
 	max-width: 1080px;
 	background-color: $base-bg;
 	padding: 2.5vw;
+	margin: 0 auto;
 }
 
 *a {
@@ -19,14 +20,20 @@ body {
 }
 
 //header
-header img {
-	margin-top: 50px;
-	width: 300px;
-	@include tablet {
-		width: 500px;
-	}
+.site-header {
 	@include desktop {
-		width: 700px;
+		display: flex;
+		justify-content: center;
+	}
+	img {
+		margin-top: 50px;
+		width: 300px;
+		@include tablet {
+			width: 500px;
+		}
+		@include desktop {
+			width: 700px;
+		}
 	}
 }
 
@@ -39,6 +46,9 @@ footer {
 	}
 	margin-top: 72px;
 	margin-bottom: 48px;
+	@include desktop {
+		justify-content: flex-end;
+	}
 }
 .site-info p{
 	margin: 1rem 0;
@@ -47,21 +57,78 @@ footer {
 	}
 }
 
+
 //article
+.content-area {
+	@include desktop {
+		position: relative;
+		margin-right: 175px;
+		margin-left: 175px;
+	}
+}
+.content-area:before {
+	@include desktop {
+		font-family: FontAwesome;
+		content: "\f10d";
+		color: $green;
+		font-size: 125px;
+		position: absolute;
+		left: -175px;
+		top: 0;
+	}
+}
+.content-area:after {
+	@include desktop {
+		font-family: FontAwesome;
+		content: "\f10e";
+		color: $green;
+		font-size: 125px;
+		position: absolute;
+		right: -175px;
+		top: 0;
+	}
+}
 .entry-content p{
 	font-size: 1.25rem;
 	@include tablet {
 		font-size: 1.75rem;
 	}
+	@include desktop {
+		font-size: 2.5rem;
+	}
 }
-.entry-title:before {
+//not on the about page title
+body:not(.page-id-107) .entry-title:before {
 	content: "- ";
 }
 .entry-title {
+	display: inline-block;
 	font-size: 1.25rem;
 	font-weight: 400;
 	@include tablet {
 		margin-bottom: 3rem;
+	}
+}
+body.page{
+	h1 {
+	margin-top: 3rem;
+	margin-bottom: 1.25rem;
+	font-size: 1.75rem;
+	font-weight: bold;
+	}
+	p {
+		font-size: 1rem;
+	}
+}
+.source {
+	display: inline-block;
+	font-family: Exo Web Light Italic;
+	font-size: 1.25rem;
+	color: #fff;
+	a {
+		font-family: Exo Web Light Italic;
+		font-size: 1.25rem;
+		color: $green;
 	}
 }
 //new quote button
@@ -74,9 +141,13 @@ footer {
 	font-family: Exo Web Light;
 	font-size: 1.25rem;
 	padding: 0.75rem 2.25rem;
+	@include desktop {
+		display: block;
+		margin: 0 auto;
+	}
 }
 /* All Archives Page */
-.page-template-archive .site-main div ul {
+.page-template-page-archives .site-main div ul {
 	list-style: none;
 	margin-left: 0;
 	padding-left: 0;
@@ -91,24 +162,37 @@ body.archive article, body.archive .page-title{
 }
 
 /* Submit a Quote Page */
-.wpcf7 {
+#quote-submission-form {
+	label {
+		font-family: Exo Web Light;
+		color: #fff;
+	}
 	input {
+		display: block;
+		font-family: Exo Web Light;
 		background-color: $base-bg;
 		border: 1px solid $green;
+		margin-bottom: 1rem;
 		width: 60%;
+		color: #fff;
 	}
 	textarea {
+		display: block;
+		font-family: Exo Web Light;
 		background-color: $base-bg;
+		color: #fff;
 		border: 1px solid $green;
 		width: 100%;
+		margin-bottom: 1rem;
 	}
-	.wpcf7-submit {
+	.quote-submit-button {
 		box-shadow: none;
 		text-shadow: none;
 		color: $green;
 		font-family: Exo Web Light;
 		font-size: 16px;
 		width: 50%;
+		margin-top: 1.5rem;
 	}
 }
 
@@ -124,8 +208,9 @@ body.archive article, body.archive .page-title{
 			background-color: $base-bg;
 			border: 2px solid $green;
 			font-family: Exo Web Light;
+			color: #fff;
 		}
-		.search-submit {
+		.search-submit, {
 			box-shadow: none;
 			background-color: $base-bg;
 			border: none;
@@ -145,15 +230,20 @@ body.search-results {
 		padding-bottom: 24px;
 		border-bottom: 1px dotted #fff;
 	}
-	.entry-title a{
-		font-size: 24px;
-		font-weight: 700;
+	.entry-title {
+		margin-top: 1.25rem;
+		margin-bottom: 1.25rem;
+		a{
+			font-size: 24px;
+			font-weight: 700;
+		}
 	}
 	.entry-title:before {
 		content: '';
 	}
 	.entry-summary {
 		font-size: 16px;
+		margin-top: 0;
 	}
 }
 
